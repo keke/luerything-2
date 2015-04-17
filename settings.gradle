@@ -1,2 +1,5 @@
 rootProject.name = 'luerything-2'
 
+include 'ui'
+include 'app'
+
