@@ -2,3 +2,7 @@
 .idea/
 gradle/
 .gradle/
+build/
+*.ipr
+*.iws
+back/services/extractor/src/test/resources/local_data

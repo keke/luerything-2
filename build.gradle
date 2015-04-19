@@ -1,11 +1,40 @@
-apply plugin: 'java'
-
-version = '0.0.1-SNAPSHOT'
-
-repositories {
+allprojects {
+  apply plugin: "idea"
+  repositories {
+    mavenLocal()
     jcenter()
+  }
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+configure(subprojects){
+  println("Config $it.path")
+}
+
+
+configure(subprojects.findAll { it.path.startsWith(":back") }) {
+  //all configuration for backend
+  println("Config backend modules $it.name")
+  apply plugin: "java"
+  apply plugin: "scala"
+  sourceCompatibility = 1.8
+  dependencies {
+    compile group: 'org.scala-lang', name: 'scala-library-all', version: "$scalaVersion"
+    compile group: 'org.slf4j', name: 'slf4j-api', version: "$slf4jVersion"
+    testCompile "org.mockito:mockito-core:$mockitoVersion"
+  }
+  test {
+//    useTestNG()
+  }
+}
+//configure(subprojects.findAll { it.name == "front" }) {
+//  //all configuration for front
+//  println("Config front end $it")
+//
+//}
+
+buildscript {
+  repositories {
+    jcenter()
+    mavenLocal()
+  }
 }

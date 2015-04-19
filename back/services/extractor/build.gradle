@@ -1,0 +1,5 @@
+dependencies {
+  compile group: 'org.apache.tika', name: 'tika-core', version: "$tikaVersion"
+  runtime group: 'org.apache.tika', name: 'tika-parsers', version: "$tikaVersion"
+//  runtime group: 'org.apache.pdfbox', name: 'pdfbox', version: "$pdfboxVersion"
+}

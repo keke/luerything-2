@@ -1,5 +1,8 @@
-rootProject.name = 'luerything-2'
+rootProject.name = 'net.luerything'
 
-include 'ui'
-include 'app'
+include 'front'
+include 'back'
+include ':back:services'
+include ':back:services:extractor'
+
 
