@@ -13,6 +13,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * A basic ISBN extractor handler for Tika.
+ *
  * @author keke
  */
 public class ISBNExtractorHandler extends ContentHandlerDecorator {
@@ -21,12 +23,12 @@ public class ISBNExtractorHandler extends ContentHandlerDecorator {
   private static final String ISBN_ID = "dc:identifier";
   private static final int CONTEXT_LENGTH = 100;
   private final Metadata metadata;
-  private final StringBuilder stringBuilder;
+  private final StringBuffer stringBuilder;
 
   public ISBNExtractorHandler(ContentHandler handler, Metadata metadata) {
     super(handler);
     this.metadata = metadata;
-    this.stringBuilder = new StringBuilder();
+    this.stringBuilder = new StringBuffer();
   }
 
   @Override
