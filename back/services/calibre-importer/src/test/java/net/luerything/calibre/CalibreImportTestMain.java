@@ -13,10 +13,16 @@ public class CalibreImportTestMain {
 
   public static void main(String[] args) throws IOException {
     Path path = FileSystems.getDefault().getPath("/Users/keke/Calibre Library/James Cryer/Pro Grunt.js (1783)");
-    CalibreModel calibreModel= new CalibreImporter().read(path);
-    System.out.println(calibreModel.getOpfPackage().getIdentifier());
-    System.out.println(calibreModel.getOpfPackage().getMetadata().getCreators());
-    System.out.println(calibreModel.getOpfPackage().getMetadata().getSubjects());
-    System.out.println(calibreModel.getFiles()[0]);
+//    CalibreModel calibreModel= new CalibreImporter().read(path);
+//    System.out.println(calibreModel.getOpfPackage().getIdentifier());
+//    System.out.println(calibreModel.getOpfPackage().getMetadata().getCreators());
+//    System.out.println(calibreModel.getOpfPackage().getMetadata().getSubjects());
+//    System.out.println(calibreModel.getFiles()[0]);
+    new CalibreImporter().walk(FileSystems.getDefault().getPath("/Users/keke/Calibre Library/"), new ImportVisitor() {
+      @Override
+      public void visit(CalibreModel model) {
+        System.out.println("Found : " + model.getOpfPackage().getMetadata().getTitle());
+      }
+    });
   }
 }
