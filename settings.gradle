@@ -4,5 +4,6 @@ include 'front'
 include 'back'
 include ':back:services'
 include ':back:services:extractor'
+include ':back:services:calibre-importer'
 
 
