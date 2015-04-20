@@ -9,11 +9,11 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
  * @author keke
- *
  */
 public class CalibreImporter {
   private static final Logger LOG = LoggerFactory.getLogger(CalibreImporter.class);
@@ -29,9 +29,13 @@ public class CalibreImporter {
   }
 
   public CalibreModel read(Path path) throws IOException {
+    if (!Files.isDirectory(path)) {
+      throw new IllegalArgumentException("Require directory but receive " + path);
+    }
     try {
-      OpfPackage opfPackage = (OpfPackage) UNM.unmarshal(path.toFile());
-      return new CalibreModel(opfPackage);
+
+      OpfPackage opfPackage = (OpfPackage) UNM.unmarshal(path.getFileSystem().getPath(path.toString(), "metadata.opf").toFile());
+      return new CalibreModel(path, opfPackage);
     } catch (JAXBException e) {
       throw new IOException(e);
     }
